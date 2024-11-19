@@ -20,18 +20,44 @@
 
 /* Begin PBXFileReference section */
 		88C733282CED05DF00871B02 /* winner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = winner; sourceTree = BUILT_PRODUCTS_DIR; };
+		88C733362CED060100871B02 /* winner-test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "winner-test.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		88C733402CED095300871B02 /* Exceptions for "winner" folder in "winner-test" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				WinLose.swift,
+			);
+			target = 88C733352CED060100871B02 /* winner-test */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		88C7332A2CED05DF00871B02 /* winner */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				88C733402CED095300871B02 /* Exceptions for "winner" folder in "winner-test" target */,
+			);
 			path = winner;
+			sourceTree = "<group>";
+		};
+		88C733372CED060100871B02 /* winner-test */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "winner-test";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		88C733252CED05DF00871B02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88C733332CED060100871B02 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -45,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				88C7332A2CED05DF00871B02 /* winner */,
+				88C733372CED060100871B02 /* winner-test */,
 				88C733292CED05DF00871B02 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				88C733282CED05DF00871B02 /* winner */,
+				88C733362CED060100871B02 /* winner-test.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,6 +110,28 @@
 			productReference = 88C733282CED05DF00871B02 /* winner */;
 			productType = "com.apple.product-type.tool";
 		};
+		88C733352CED060100871B02 /* winner-test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88C7333A2CED060100871B02 /* Build configuration list for PBXNativeTarget "winner-test" */;
+			buildPhases = (
+				88C733322CED060100871B02 /* Sources */,
+				88C733332CED060100871B02 /* Frameworks */,
+				88C733342CED060100871B02 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				88C733372CED060100871B02 /* winner-test */,
+			);
+			name = "winner-test";
+			packageProductDependencies = (
+			);
+			productName = "winner-test";
+			productReference = 88C733362CED060100871B02 /* winner-test.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -93,6 +143,9 @@
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					88C733272CED05DF00871B02 = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					88C733352CED060100871B02 = {
 						CreatedOnToolsVersion = 16.1;
 					};
 				};
@@ -112,12 +165,30 @@
 			projectRoot = "";
 			targets = (
 				88C733272CED05DF00871B02 /* winner */,
+				88C733352CED060100871B02 /* winner-test */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		88C733342CED060100871B02 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		88C733242CED05DF00871B02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88C733322CED060100871B02 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -267,6 +338,36 @@
 			};
 			name = Release;
 		};
+		88C7333B2CED060100871B02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NEAY582ME4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.billdonner.winner-test";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		88C7333C2CED060100871B02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NEAY582ME4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.billdonner.winner-test";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -284,6 +385,15 @@
 			buildConfigurations = (
 				88C733302CED05DF00871B02 /* Debug */,
 				88C733312CED05DF00871B02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88C7333A2CED060100871B02 /* Build configuration list for PBXNativeTarget "winner-test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88C7333B2CED060100871B02 /* Debug */,
+				88C7333C2CED060100871B02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
