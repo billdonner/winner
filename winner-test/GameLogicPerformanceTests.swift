@@ -17,7 +17,7 @@ struct GameLogicPerformanceTests {
         let result = test()
         let end = DispatchTime.now()
         let elapsed = end.uptimeNanoseconds - start.uptimeNanoseconds
-        print("\(testName) completed in \(elapsed / 1_000_000) ms with result: \(result)")
+        print("--->\(testName) completed in \(elapsed ) ns with result: \(result)")
     }
 
     // Test Case 1: 10x10 Fully Blocked Matrix
@@ -84,4 +84,20 @@ struct GameLogicPerformanceTests {
         }
         measurePerformance(of: { isWinningPath(in: matrix) == false || isWinningPath(in: matrix) == true }, testName: "50x50 Randomized Blocking")
     }
+  
+  @Test func test50x50ComplexBlocking() async throws {
+      let matrix: [[GameCellState]] = (0..<50).map { row in
+          (0..<50).map { col in
+              // Maze-like structure
+              if (row + col) % 7 == 0 || (row % 5 == 0 && col % 10 != 0) || (col % 4 == 0 && row % 3 == 0) {
+                  return .blocked
+              } else if (row == 0 && col == 0) || (row == 49 && col == 49) {
+                  return .playedCorrectly // Ensure start and end are playable
+              } else {
+                  return .unplayed
+              }
+          }
+      }
+      measurePerformance(of: { isWinningPath(in: matrix) == false }, testName: "50x50 Complex Blocking")
+  }
 }

@@ -1,4 +1,7 @@
-import SwiftUI
+// this file is maintained in the mac app Winner which has about 100 test cases for this vital code
+// v 0.9
+
+import Foundation
 
 // Represents the state of a game cell
 enum GameCellState: Codable {
@@ -7,18 +10,6 @@ enum GameCellState: Codable {
     case unplayed
     case blocked
 
-    var borderColor: Color {
-        switch self {
-        case .playedCorrectly:
-            return Color.green
-        case .playedIncorrectly:
-            return Color.red
-        case .unplayed:
-            return .gray
-        case .blocked:
-            return Color.gray.opacity(0.5)
-        }
-    }
 }
 
 // Represents a position in the matrix
@@ -38,39 +29,52 @@ func isWinningPath(in matrix: [[GameCellState]]) -> Bool {
 
 // Checks if a theoretical winning path is possible
 func isPossibleWinningPath(in matrix: [[GameCellState]]) -> Bool {
-    let size = matrix.count
-    guard size > 0 else { return false }
+    let n = matrix.count
+    guard n > 0 else { return false }
 
-    // Helper to validate path continuity
-    func traverse(position: Position, visited: inout Set<Position>) -> Bool {
-        // Check bounds
-        guard position.row >= 0, position.row < size, position.col >= 0, position.col < size else {
-            return false
+    // Define the diagonals' start and end points
+    let diagonals = [
+        ((0, 0), (n - 1, n - 1)), // Main diagonal
+        ((n - 1, 0), (0, n - 1))  // Reverse diagonal
+    ]
+
+    let directions = [(1, 1), (-1, 1), (0, 1), (1, 0), (-1, 0), (0, -1)] // Includes diagonal and orthogonal
+
+    func bfs(start: (Int, Int), end: (Int, Int)) -> Bool {
+        var queue = [start]
+        var visited = Set<String>()
+        visited.insert("\(start.0),\(start.1)")
+
+        while !queue.isEmpty {
+            let (row, col) = queue.removeFirst()
+
+            if (row, col) == end { return true }
+
+            for dir in directions {
+                let newRow = row + dir.0
+                let newCol = col + dir.1
+
+                if newRow >= 0, newRow < n, newCol >= 0, newCol < n,
+                   !visited.contains("\(newRow),\(newCol)"),
+                   matrix[newRow][newCol] != .blocked {
+                    
+                    queue.append((newRow, newCol))
+                    visited.insert("\(newRow),\(newCol)")
+                }
+            }
         }
 
-        // Check cell state
-        if matrix[position.row][position.col] == .blocked || visited.contains(position) {
-            return false
-        }
-
-        // Mark cell as visited
-        visited.insert(position)
-
-        // If we reach the bottom-right corner, a path exists
-        if position.row == size - 1 && position.col == size - 1 {
-            return true
-        }
-
-        // Explore neighbors: right, down, left, up
-        return traverse(position: Position(row: position.row, col: position.col + 1), visited: &visited) ||
-               traverse(position: Position(row: position.row + 1, col: position.col), visited: &visited) ||
-               traverse(position: Position(row: position.row, col: position.col - 1), visited: &visited) ||
-               traverse(position: Position(row: position.row - 1, col: position.col), visited: &visited)
+        return false
     }
 
-    // Start traversal from the top-left corner
-    var visited: Set<Position> = []
-    return traverse(position: Position(row: 0, col: 0), visited: &visited)
+    // Check both diagonals
+    for (start, end) in diagonals {
+        if bfs(start: start, end: end) {
+            return true
+        }
+    }
+
+    return false
 }
 
 // Checks if any pair of corners creates a losing condition
