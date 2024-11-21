@@ -80,6 +80,16 @@ struct GameLogicTestsIncompletePaths {
       let result = isPossibleWinningPath(in: matrix)
       #expect(result == true, "4x4 matrix has a valid winning path through the main diagonal despite the reverse diagonal being blocked.")
   }
+  @Test func test4x4OnlyOnePath() async throws {
+      let matrix: [[GameCellState]] = [
+          [.unplayed, .unplayed, .blocked, .playedCorrectly],
+          [.blocked, .blocked, .blocked, .playedIncorrectly],
+          [.blocked, .blocked, .unplayed, .blocked],
+          [.playedCorrectly, .unplayed, .blocked, .unplayed]
+      ]
+      let result = isPossibleWinningPath(in: matrix)
+      #expect(result == false, "4x4 matrix has only one possible path which is blocked.")
+  }
   @Test func test5x5BothDiagonalsValid() async throws {
       let matrix: [[GameCellState]] = [
           [.playedCorrectly, .unplayed, .unplayed, .unplayed, .playedCorrectly],
